@@ -12,14 +12,14 @@ template <class T, class... Ts> struct TypeMap<T, Ts...> {
         if constexpr (sizeof...(Ts) > 0) {
             tail = new TypeMap<Ts...>;
         }
-    }
+    };
 
     template <class U> void AddValue(U v) { AddValueImpl(v, *this); }
 
     template <class U> U GetValue() {
         if constexpr (std::is_same_v<T, U>) {
             if (!deleted)
-            return value;
+                return value;
             throw std::runtime_error("deleted");
         } else {
             if (tail) {
@@ -27,7 +27,7 @@ template <class T, class... Ts> struct TypeMap<T, Ts...> {
             }
         }
         throw std::runtime_error("error");
-    }
+    };
 
     template <class U> bool Contains() {
     if constexpr (std::is_same_v<U, T>) {
@@ -41,7 +41,7 @@ template <class T, class... Ts> struct TypeMap<T, Ts...> {
     }
 
     return false;
-    }
+    };
 
     template <class U> void RemoveValue() {
         if constexpr (std::is_same_v<U, T>) {
@@ -63,7 +63,7 @@ template <class T, class... Ts> struct TypeMap<T, Ts...> {
         }
 
         throw std::runtime_error("error");
-    }
+    };
 };
 
 //----------------------------------
