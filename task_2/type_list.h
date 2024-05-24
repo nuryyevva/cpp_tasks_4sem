@@ -75,8 +75,8 @@ struct TypeListGetIndex<T, TypeList<V, ARGS...>> {
 
 template <class T, class... ARGS>
 struct TypeListGetIndex<T, TypeList<T, ARGS...>> {
-    static constexpr std::size_t i = 1;
+    static constexpr std::size_t i = 0;
 };
 
 template <class T, class TL>
-constexpr std::size_t TypeListGetIndexValue = TypeListGetIndex<T, TL>::i - 1;
+constexpr std::size_t TypeListGetIndexValue = TypeListGetIndex<T, TL>::i;
